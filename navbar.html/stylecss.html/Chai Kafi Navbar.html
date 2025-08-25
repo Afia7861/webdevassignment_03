@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chai Kafi Navbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: black;
+      border-radius: 10px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    /* Logo image styling */
+    .logo img {
+      height: 50px;   /* height adjust */
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: #9fef00;
+    }
+
+    /* Outline Button */
+    .btn {
+      border: 2px solid #9fef00;
+      padding: 8px 15px;
+      border-radius: 8px;
+      color: #9fef00 !important;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #9fef00;
+      color: black !important;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="c:\Users\DELL\Downloads\tea.jpg" alt="Chai Kafi Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">About us</a></li>
+      <li><a href="#">Portfolio</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#" class="btn">Contact us</a></li>
+    </ul>
+  </nav>
+
+</body>
+</html>
