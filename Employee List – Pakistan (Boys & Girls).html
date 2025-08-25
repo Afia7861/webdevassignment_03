@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee List – Pakistan (Boys & Girls)</title>
+  <style>
+    :root{
+      --bg1:#fbcfe8;   /* tea pink */
+      --bg2:#c4b5fd;   /* light purple */
+      --bg3:#f5d0fe;   /* soft magenta */
+      --card:#ffffffdd;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#a21caf;
+      --accent-2:#9333ea;
+      --row:#fff7fb;
+      --shadow: 0 10px 25px rgba(0,0,0,.12);
+      --radius: 16px;
+    }body{
+  margin:0; min-height:100vh; display:grid; place-items:center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans";
+  color:var(--text);
+  background: linear-gradient(120deg, var(--bg1), var(--bg2), var(--bg3));
+  background-attachment: fixed;
+}
+
+.wrap{ width:min(1100px, 94vw); }
+
+.card{
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.25rem 1rem;
+}
+
+.title{
+  margin:0 0 .75rem; font-weight:700;
+  display:flex; align-items:center; gap:.6rem;
+}
+
+.badge{ padding:.25rem .55rem; border-radius:999px; font-size:.75rem; background:linear-gradient(90deg, var(--accent), var(--accent-2)); color:white; }
+
+.table-wrap{ overflow:auto; border-radius:calc(var(--radius) - 4px); border:1px solid #e6e6ef; }
+
+table{ width:100%; border-collapse:separate; border-spacing:0; background:white; }
+
+thead th{
+  position:sticky; top:0;
+  text-align:left; text-transform:uppercase; font-size:.75rem; letter-spacing:.05em;
+  background:linear-gradient(180deg, #fdf2f8, #faf5ff);
+  padding:.8rem .9rem; color:#4b5563; border-bottom:1px solid #e5e7eb;
+}
+
+tbody td{ padding:.85rem .9rem; border-bottom:1px solid #f3f4f6; }
+tbody tr:nth-child(even){ background:var(--row); }
+tbody tr:hover{ background:#faf5ff; }
+
+.num{ width:42px; text-align:center; color:#6b7280; }
+.id{ font-variant-numeric: tabular-nums; font-weight:600; color:#111827; }
+.dob{ font-variant-numeric: tabular-nums; color:#334155; }
+.salary{ font-variant-numeric: tabular-nums; font-weight:700; color:#be185d; }
+
+tfoot td{ padding:.8rem .9rem; background:#fdf2f8; color:#6b7280; font-size:.9rem; }
+
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <h1 class="title">Employee List – Pakistan <span class="badge">Boys & Girls</span></h1>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="num">#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Employee ID</th>
+              <th>Date of Birth</th>
+              <th>Salary (PKR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="num">1</td>
+              <td>Ali</td>
+              <td>Khan</td>
+              <td class="id">2001</td>
+              <td class="dob">15 Jan 1994</td>
+              <td class="salary">₨ 82,000</td>
+            </tr>
+            <tr>
+              <td class="num">2</td>
+              <td>Umar</td>
+              <td>Raza</td>
+              <td class="id">2002</td>
+              <td class="dob">20 Mar 1993</td>
+              <td class="salary">₨ 75,000</td>
+            </tr>
+            <tr>
+              <td class="num">3</td>
+              <td>Haider</td>
+              <td>Malik</td>
+              <td class="id">2003</td>
+              <td class="dob">10 Oct 1992</td>
+              <td class="salary">₨ 89,000</td>
+            </tr>
+            <tr>
+              <td class="num">4</td>
+              <td>Fatima</td>
+              <td>Sheikh</td>
+              <td class="id">2004</td>
+              <td class="dob">05 Apr 1995</td>
+              <td class="salary">₨ 70,000</td>
+            </tr>
+            <tr>
+              <td class="num">5</td>
+              <td>Khadija</td>
+              <td>Ansari</td>
+              <td class="id">2005</td>
+              <td class="dob">12 Jul 1994</td>
+              <td class="salary">₨ 77,500</td>
+            </tr>
+            <tr>
+              <td class="num">6</td>
+              <td>Ayesha</td>
+              <td>Siddiqui</td>
+              <td class="id">2006</td>
+              <td class="dob">09 Nov 1996</td>
+              <td class="salary">₨ 68,000</td>
+            </tr>
+            <tr>
+              <td class="num">7</td>
+              <td>Zara</td>
+              <td>Javed</td>
+              <td class="id">2007</td>
+              <td class="dob">23 Feb 1997</td>
+              <td class="salary">₨ 73,000</td>
+            </tr>
+            <tr>
+              <td class="num">8</td>
+              <td>Bilal</td>
+              <td>Qureshi</td>
+              <td class="id">2008</td>
+              <td class="dob">18 Aug 1991</td>
+              <td class="salary">₨ 95,000</td>
+            </tr>
+            <tr>
+              <td class="num">9</td>
+              <td>Mariam</td>
+              <td>Akhtar</td>
+              <td class="id">2009</td>
+              <td class="dob">01 Jun 1995</td>
+              <td class="salary">₨ 72,000</td>
+            </tr>
+            <tr>
+              <td class="num">10</td>
+              <td>Osman</td>
+              <td>Tariq</td>
+              <td class="id">2010</td>
+              <td class="dob">29 Sep 1992</td>
+              <td class="salary">₨ 80,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6">Sample Boys & Girls Employee Data – Editable</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
