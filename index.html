@@ -1,0 +1,218 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <script src="app.js" defer></script>
+     <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BMI Calculator</title>
+  <style>
+    :root{
+      --bg:#0f172a; --card:#0b1220; --accent:#06b6d4; --muted:#94a3b8; --success:#10b981; --danger:#ef4444; --glass: rgba(255,255,255,0.04);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071124 0%, #081328 60%);color:#e6eef8;display:grid;place-items:center;padding:32px}
+    .card{width:100%;max-width:880px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03);}
+    .row{display:flex;gap:18px}
+    .col{flex:1}
+    h1{margin:0 0 6px;font-size:20px}
+    p.lead{margin:0 0 18px;color:var(--muted)}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:8px}
+    input[type="number"], select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;font-size:15px}
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--accent);color:#002; padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .result{margin-top:18px;padding:16px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;gap:16px}
+    .bignum{font-size:42px;font-weight:700}
+    .meta{color:var(--muted)}
+    .meter{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;width:100%}
+    .meter > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#7c3aed);transition:width .6s ease}
+    .category{font-weight:700}
+    .small{font-size:12px;color:var(--muted)}
+    .unit-toggle{display:flex;gap:8px}
+    .unit-toggle button{padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);cursor:pointer}
+    .unit-toggle button.active{background:rgba(255,255,255,0.04);color:var(--accent);border-color:rgba(255,255,255,0.06)}
+    @media (max-width:720px){.row{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>BMI Calculator</h1>
+    <p class="lead">Weight + height se apna Body Mass Index nikalain. Metric aur Imperial units support.</p>
+
+    <div style="display:flex;gap:16px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+      <div class="unit-toggle" role="tablist" aria-label="Select units">
+        <button id="unitMetric" class="active" aria-pressed="true">Metric (kg, cm)</button>
+        <button id="unitImperial" aria-pressed="false">Imperial (lb, in)</button>
+      </div>
+      <div style="margin-left:auto" class="small">Healthy BMI: 18.5 – 24.9</div>
+    </div>
+
+    <form id="bmiForm" onsubmit="return false;">
+      <div class="row">
+        <div class="col">
+          <label id="weightLabel">Weight (kg)</label>
+          <input type="number" id="weight" min="0" step="0.1" placeholder="e.g. 70" aria-labelledby="weightLabel">
+        </div>
+        <div class="col" id="heightCol">
+          <label id="heightLabel">Height (cm)</label>
+          <input type="number" id="height" min="0" step="0.1" placeholder="e.g. 170" aria-labelledby="heightLabel">
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center;margin-top:12px">
+        <button class="btn" id="calcBtn">Calculate BMI</button>
+        <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+        <div style="margin-left:auto;color:var(--muted);font-size:13px">Last result: <span id="lastResult">—</span></div>
+      </div>
+    </form>
+
+    <div class="result" id="result" aria-live="polite" style="display:none">
+      <div style="min-width:110px;text-align:center">
+        <div class="bignum" id="bmiValue">0</div>
+        <div class="small">BMI</div>
+      </div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="category" id="bmiCategory">Normal</div>
+          <div class="small" id="advice">Keep it up — balanced diet & activity.</div>
+        </div>
+        <div style="margin-top:10px" class="meter" aria-hidden="true">
+          <i id="meterFill"></i>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:10px;color:var(--muted);font-size:13px;flex-wrap:wrap">
+          <div>Underweight &lt; 18.5</div>
+          <div>Normal 18.5–24.9</div>
+          <div>Overweight 25–29.9</div>
+          <div>Obese ≥ 30</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px;color:var(--muted);font-size:13px">Note: BMI is a general guideline and doesn't capture body composition (muscle vs fat). For medical advice, consult a professional.</p>
+  </main>
+
+  <script>
+    // Elements
+    const unitMetricBtn = document.getElementById('unitMetric');
+    const unitImperialBtn = document.getElementById('unitImperial');
+    const weightInput = document.getElementById('weight');
+    const heightInput = document.getElementById('height');
+    const weightLabel = document.getElementById('weightLabel');
+    const heightLabel = document.getElementById('heightLabel');
+    const calcBtn = document.getElementById('calcBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const resultEl = document.getElementById('result');
+    const bmiValueEl = document.getElementById('bmiValue');
+    const bmiCategoryEl = document.getElementById('bmiCategory');
+    const adviceEl = document.getElementById('advice');
+    const meterFill = document.getElementById('meterFill');
+    const lastResult = document.getElementById('lastResult');
+
+    let units = 'metric'; // 'metric' or 'imperial'
+
+    function setUnits(u){
+      units = u;
+      if(u === 'metric'){
+        unitMetricBtn.classList.add('active'); unitMetricBtn.setAttribute('aria-pressed','true');
+        unitImperialBtn.classList.remove('active'); unitImperialBtn.setAttribute('aria-pressed','false');
+        weightLabel.textContent = 'Weight (kg)'; weightInput.placeholder = 'e.g. 70'; weightInput.step = '0.1';
+        heightLabel.textContent = 'Height (cm)'; heightInput.placeholder = 'e.g. 170'; heightInput.step = '0.1';
+      } else {
+        unitImperialBtn.classList.add('active'); unitImperialBtn.setAttribute('aria-pressed','true');
+        unitMetricBtn.classList.remove('active'); unitMetricBtn.setAttribute('aria-pressed','false');
+        weightLabel.textContent = 'Weight (lb)'; weightInput.placeholder = 'e.g. 154'; weightInput.step = '0.1';
+        heightLabel.textContent = 'Height (in)'; heightInput.placeholder = 'e.g. 67'; heightInput.step = '0.1';
+      }
+      // hide result when switching
+      resultEl.style.display = 'none';
+    }
+
+    unitMetricBtn.addEventListener('click', ()=> setUnits('metric'));
+    unitImperialBtn.addEventListener('click', ()=> setUnits('imperial'));
+
+    function classifyBMI(bmi){
+      if(bmi < 18.5) return {cat: 'Underweight', advice: 'Consider a balanced diet to gain weight.'};
+      if(bmi < 25) return {cat: 'Normal', advice: 'Great — maintain a healthy lifestyle.'};
+      if(bmi < 30) return {cat: 'Overweight', advice: 'Increase physical activity & watch calorie intake.'};
+      return {cat: 'Obese', advice: 'Consult a healthcare professional for guidance.'};
+    }
+
+    function calculateBMI(){
+      const w = parseFloat(weightInput.value);
+      const h = parseFloat(heightInput.value);
+      if(!w || !h || w <= 0 || h <= 0){
+        alert('Please enter valid positive numbers for weight and height.');
+        return;
+      }
+      let bmi;
+      if(units === 'metric'){
+        // height in cm -> meters
+        const m = h / 100;
+        bmi = w / (m * m);
+      } else {
+        // imperial: weight lb, height in -> BMI formula with 703
+        bmi = (703 * w) / (h * h);
+      }
+      bmi = Math.round(bmi * 10) / 10; // one decimal
+
+      const info = classifyBMI(bmi);
+
+      // update UI
+      bmiValueEl.textContent = bmi.toFixed(1);
+      bmiCategoryEl.textContent = info.cat;
+      adviceEl.textContent = info.advice;
+      resultEl.style.display = 'flex';
+
+      // meter: map BMI range 12..40 to 0..100
+      const min = 12; const max = 40;
+      let pct = ((bmi - min) / (max - min)) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      meterFill.style.width = pct + '%';
+
+      // color meter by category
+      if(bmi < 18.5) meterFill.style.background = 'linear-gradient(90deg,#06b6d4,#7dd3fc)';
+      else if(bmi < 25) meterFill.style.background = 'linear-gradient(90deg,#10b981,#34d399)';
+      else if(bmi < 30) meterFill.style.background = 'linear-gradient(90deg,#f59e0b,#f97316)';
+      else meterFill.style.background = 'linear-gradient(90deg,#ef4444,#fb7185)';
+
+      lastResult.textContent = bmi.toFixed(1) + ' (' + info.cat + ')';
+    }
+
+    calcBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      calculateBMI();
+    });
+
+    resetBtn.addEventListener('click', ()=>{
+      weightInput.value = '';
+      heightInput.value = '';
+      resultEl.style.display = 'none';
+      lastResult.textContent = '—';
+      meterFill.style.width = '0%';
+    });
+
+    // initialize
+    setUnits('metric');
+  </script>
+</body>
+</html>
+
+</body>
+</html>
